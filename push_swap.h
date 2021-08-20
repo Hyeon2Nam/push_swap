@@ -3,47 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyenam <hyenam@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 15:22:31 by hyenam            #+#    #+#             */
-/*   Updated: 2021/06/25 21:32:47 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/20 16:08:01 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#define PUSH_SWAP_H
 
-# include <stdio.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include "libft/libft.h"
 
-# include <unistd.h>
-# include <stdlib.h> 
-# include "libft/libft.h"
+typedef struct s_node
+{
+    struct s_node *prev;
+    struct s_node *next;
+    int data;
+} t_node;
 
 typedef struct s_stack
 {
-    int *a;
-    int *b;
+    t_node *head;
+    t_node *tail;
+    int size;
 } t_stack;
 
+typedef struct s_pivot
+{
+    t_node *big;
+    t_node *small;
+}   t_pivot;
 
-void	print_error(void);
-void arr_print(t_stack *stack, int argc);
-void init_a(int count, char *nums[], t_stack *stack);
+
+void error_handler(void);
+void ft_free(char **arr);
+
+void add_first(t_stack *stack, int data);
+void add_last(t_stack *stack, int data);
+void add_pos(t_stack *stack, int pos, int data);
+void delete_first(t_stack *stack);
+void delete_last(t_stack *stack);
+void delete_pos(t_stack *stack, int pos);
+
+t_stack *init_stack(void);
+void reset_stack(t_stack *stack);
+void replace_data(t_stack *stack, int pos, int data);
+void search_node(t_stack *stack, int pos);
+void print_stack(t_stack *stack);
+
+void check_duplicate(t_stack *stack);
+void sort(t_stack *a);
 
 void sa(t_stack *stack);
 void sb(t_stack *stack);
-void ss(t_stack *stack);
+void ss(t_stack *a, t_stack *b);
 
-void pa(t_stack *stack);
-void pb(t_stack *stack);
+void pa(t_stack *a, t_stack *b);
+void pb(t_stack *a, t_stack *b);
 
 void ra(t_stack *stack);
 void rb(t_stack *stack);
-void rr(t_stack *stack);
+void rr(t_stack *a, t_stack *b);
 
 void rra(t_stack *stack);
 void rrb(t_stack *stack);
-void rrr(t_stack *stack);
-
+void rrr(t_stack *a, t_stack *b);
 
 #endif
