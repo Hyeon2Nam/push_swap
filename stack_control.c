@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 10:55:10 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/18 17:05:32 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/23 14:45:00 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,13 @@ void add_pos(t_stack *stack, int pos, int data)
 	cur = stack->head;
 	if (pos <= stack->size)
 	{
-		if (pos == 1)
+		if (pos == 0)
 			add_first(stack, data);
 		else if (pos == stack->size)
 			add_last(stack, data);
 		else
 		{
 			pos--;
-			cur = stack->head;
 			while (--pos)
 				cur = cur->next;
 			node->prev = cur;
@@ -139,7 +138,7 @@ void delete_pos(t_stack *stack, int pos)
 	{
 		if (stack->head == NULL)
 			printf("stack is empty\n");
-		else if (pos == 1)
+		else if (pos == 0)
 			delete_first(stack);
 		else if (pos == stack->size)
 			delete_last(stack);

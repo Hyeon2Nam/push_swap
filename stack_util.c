@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 11:59:07 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/18 17:52:53 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/23 16:22:38 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,14 @@ void replace_data(t_stack *stack, int pos, int data)
     cur->data = data;
 }
 
-void search_node(t_stack *stack, int pos)
+t_node *search_node(t_stack *stack, int data)
 {
     t_node *cur;
-    int n;
 
     cur = stack->head;
-    if (pos == 1)
-        printf("data[%d] = %d\n", pos, cur->data);
-    else
-    {
-        n = pos;
-        while (--n)
-            cur = cur->next;
-        printf("data[%d] = %d\n", pos, cur->data);
-    }
+    while (data != cur->data)
+        cur = cur->next;
+    return(cur);    
 }
 
 void print_stack(t_stack *stack)
@@ -79,14 +72,14 @@ void print_stack(t_stack *stack)
         printf("stack is empty\n");
     else
     {
-        n = 1;
+        n = 0;
         while (cur != stack->tail)
         {
-            printf("Data[%d] = %d\n", n, cur->data);
+            printf("Stack[%d] = %d\n", n, cur->data);
             cur = cur->next;
             n++;
         }
-        printf("Data[%d] = %d\n", n, cur->data);
+        printf("Stack[%d] = %d\n", n, cur->data);
     }
     printf("-------------------\n");
 }

@@ -6,14 +6,25 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:18:37 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/20 16:08:55 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/23 18:16:04 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void b_to_a()
+{
+    
+}
+
+void a_to_b()
+{
+
+}
+
 void sort(t_stack *a)
 {
+    printf("----------------");
     t_stack *b;
 
     b = init_stack();

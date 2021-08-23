@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 15:22:31 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/20 16:08:01 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/23 18:15:48 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_stack
 
 typedef struct s_pivot
 {
-    t_node *big;
-    t_node *small;
+    int big;
+    int small;
 }   t_pivot;
 
 
@@ -52,10 +52,14 @@ void delete_pos(t_stack *stack, int pos);
 t_stack *init_stack(void);
 void reset_stack(t_stack *stack);
 void replace_data(t_stack *stack, int pos, int data);
-void search_node(t_stack *stack, int pos);
+t_node *search_node(t_stack *stack, int data);
 void print_stack(t_stack *stack);
 
-void check_duplicate(t_stack *stack);
+t_pivot *check_duplicate(t_stack *stack);
+void duplicate(int *arr, int size);
+int ready_made(int *arr, t_stack *stack);
+t_pivot *set_pivot(int *arr, t_stack *stack);
+
 void sort(t_stack *a);
 
 void sa(t_stack *stack);
