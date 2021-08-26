@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 21:22:23 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/19 18:21:10 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/26 16:01:18 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void rra(t_stack *stack)
 {
-    printf("rra\n");
+    // printf("rra\n");
     add_last(stack, stack->head->data);
     delete_first(stack);
 }
 
 void rrb(t_stack *stack)
 {
-    printf("rrb\n");
+    // printf("rrb\n");
     add_last(stack, stack->head->data);
     delete_first(stack);
 }

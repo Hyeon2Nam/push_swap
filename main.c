@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:16:11 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/23 14:44:10 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/26 15:55:13 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char *args[])
 		ft_free(temp);
 	}
 	check_duplicate(stack);
-	// sort(stack);
+	sort(stack);
 	reset_stack(stack);
 	free(stack);
 }

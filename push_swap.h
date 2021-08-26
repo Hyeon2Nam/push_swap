@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 15:22:31 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/23 18:15:48 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/26 14:58:18 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,19 @@ void delete_pos(t_stack *stack, int pos);
 t_stack *init_stack(void);
 void reset_stack(t_stack *stack);
 void replace_data(t_stack *stack, int pos, int data);
-t_node *search_node(t_stack *stack, int data);
+int search_pos_data(t_stack *stack, int pos);
 void print_stack(t_stack *stack);
 
-t_pivot *check_duplicate(t_stack *stack);
+void check_duplicate(t_stack *stack);
+void quick_sort(int *arr, int left, int right);
+void swap(int *arr, int a, int b);
 void duplicate(int *arr, int size);
 int ready_made(int *arr, t_stack *stack);
-t_pivot *set_pivot(int *arr, t_stack *stack);
+// t_pivot *set_pivot(int *arr, t_stack *stack);
 
 void sort(t_stack *a);
+void a_to_b(t_stack *a, t_stack *b, int call);
+void b_to_a(t_stack *a, t_stack *b, int call);
 
 void sa(t_stack *stack);
 void sb(t_stack *stack);

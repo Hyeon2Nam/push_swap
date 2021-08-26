@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 11:59:07 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/23 16:22:38 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/26 10:57:57 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,16 @@ void replace_data(t_stack *stack, int pos, int data)
     cur->data = data;
 }
 
-t_node *search_node(t_stack *stack, int data)
+int search_pos_data(t_stack *stack, int pos)
 {
     t_node *cur;
+    int i;
 
+    i = -1;
     cur = stack->head;
-    while (data != cur->data)
+    while (++i < pos)
         cur = cur->next;
-    return(cur);    
+    return(cur->data);    
 }
 
 void print_stack(t_stack *stack)
@@ -67,17 +69,17 @@ void print_stack(t_stack *stack)
     t_node *cur;
     int n;
 
-    cur = stack->head;
+    cur = stack->tail;
     if (cur == NULL)
         printf("stack is empty\n");
     else
     {
-        n = 0;
-        while (cur != stack->tail)
+        n = stack->size - 1;
+        while (cur != stack->head)
         {
             printf("Stack[%d] = %d\n", n, cur->data);
-            cur = cur->next;
-            n++;
+            cur = cur->prev;
+            n--;
         }
         printf("Stack[%d] = %d\n", n, cur->data);
     }

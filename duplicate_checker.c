@@ -6,32 +6,31 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:17:36 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/23 18:16:16 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/26 15:41:49 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void print_arr(int *arr, int size)
-{
-    for (int i = 0; i < size; i++)
-        printf("arr[%d]:%d\n", i, arr[i]);
-}
+// static void print_arr(int *arr, int size)
+// {
+//     for (int i = 0; i < size; i++)
+//         printf("arr[%d]:%d\n", i, arr[i]);
+// }
 
-t_pivot *set_pivot(int *arr, t_stack *stack)
-{
-    t_pivot *pivot;
+// t_pivot *set_pivot(int *arr, t_stack *stack)
+// {
+//     t_pivot *pivot;
 
-    pivot = (t_pivot *)malloc(sizeof(t_pivot));
-    pivot->small = arr[(stack->size / 2) / 2];
-    pivot->big = arr[stack->size - ((stack->size / 2) / 2) - 1];
-    printf("small : %d big : %d\n", pivot->small, pivot->big);
-    return (pivot);
-}
+//     pivot = (t_pivot *)malloc(sizeof(t_pivot));
+//     pivot->small = arr[(stack->size / 2) / 2];
+//     pivot->big = arr[stack->size - ((stack->size / 2) / 2) - 1];
+//     return (pivot);
+// }
 
 int ready_made(int *arr, t_stack *stack)
 {
-    printf("check ready_made...\n");
+    // printf("check ready_made...\n");
 
     t_node *cur;
     int i;
@@ -51,7 +50,7 @@ int ready_made(int *arr, t_stack *stack)
 
 void duplicate(int *arr, int size)
 {
-    printf("check duplicate...\n");
+    // printf("check duplicate...\n");
 
     int i;
 
@@ -61,7 +60,7 @@ void duplicate(int *arr, int size)
             error_handler();
 }
 
-static void swap(int *arr, int a, int b)
+void swap(int *arr, int a, int b)
 {
     int temp;
 
@@ -77,7 +76,7 @@ void quick_sort(int *arr, int left, int right)
     int j;
 
     if (left >= right)
-        return ;
+        return;
     pivot = arr[left];
     i = left + 1;
     j = right;
@@ -97,7 +96,7 @@ void quick_sort(int *arr, int left, int right)
     quick_sort(arr, j + 1, right);
 }
 
-t_pivot *check_duplicate(t_stack *stack)
+void check_duplicate(t_stack *stack)
 {
     t_node *cur;
     int *arr;
@@ -106,16 +105,18 @@ t_pivot *check_duplicate(t_stack *stack)
     i = -1;
     cur = stack->head;
     arr = (int *)malloc(sizeof(int) * stack->size);
+    if (!arr)
+        return;
     while (++i <= stack->size)
     {
         arr[i] = cur->data;
         cur = cur->next;
     }
     quick_sort(arr, 0, stack->size - 1);
-    print_arr(arr, stack->size);
+    // print_arr(arr, stack->size);
     duplicate(arr, stack->size);
     if (ready_made(arr, stack) == stack->size)
         exit(0);
-    printf("PASS\n");
-    return (set_pivot(arr, stack));
+    // printf("PASS\n");
+    free(arr);
 }

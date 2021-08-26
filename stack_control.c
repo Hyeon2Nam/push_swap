@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 10:55:10 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/23 14:45:00 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/26 11:03:52 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void delete_first(t_stack *stack)
 	head = stack->head;
 	if (head == NULL)
 		printf("stack is empty\n");
+	if (stack->size == 1)
+		reset_stack(stack);
 	else
 	{
 		node = stack->head->next;
@@ -117,6 +119,8 @@ void delete_last(t_stack *stack)
 	tail = stack->tail;
 	if (tail == NULL)
 		printf("stack is empty\n");
+	if (stack->size == 1)
+		reset_stack(stack);
 	else
 	{
 		node = stack->tail->prev;
