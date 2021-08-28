@@ -6,132 +6,125 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:18:37 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/26 16:13:04 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/08/28 16:52:35 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int calc_pivot(t_stack *stack)
+int find_min_max(t_stack *stack, int key)
 {
-    t_node *cur;
-    int *arr;
-    int res;
-    int i;
+	t_node *cur;
+	int *arr;
+	int i;
 
-    i = -1;
-    cur = stack->head;
-    arr = (int *)malloc(sizeof(int) * stack->size);
-    while (++i <= stack->size)
-    {
-        arr[i] = cur->data;
-        cur = cur->next;
-    }
-    quick_sort(arr, 0, stack->size - 1);
-    res = arr[stack->size / 2];
-    free(arr);
-    return (res);
+	i = -1;
+	cur = stack->head;
+	arr = (int *)malloc(sizeof(int) * stack->size);
+	if (!arr)
+		return;
+	while (++i <= stack->size)
+	{
+		arr[i] = cur->data;
+		cur = cur->next;
+	}
+	quick_sort(arr, 0, stack->size - 1);
+	if (key)
+		i = arr[0];
+	else
+		i = arr[stack->size - 1];
+	free(arr);
+	return (i);
 }
 
-void b_to_a(t_stack *a, t_stack *b, int call)
+int ft_sqrt(int num)
 {
-    t_node *cur;
-    int temp;
-    int size;
-    int i;
-    int rbc;
-    int pac;
+	int i;
 
-    if (call == 1)
-    {
-        pb(a, b);
-        return;
-    }
-    temp = calc_pivot(b);
-    printf("temp:%d\n", temp);
-    size = b->size;
-    rbc = 0;
-    pac = 0;
-    i = -1;
-    while (++i < size)
-    {
-        cur = b->tail;
-        if (cur->data >= temp)
-        {
-            rb(b);
-            rbc++;
-        }
-        else
-        {
-            pa(a, b);
-            pac++;
-        }
-    }
-    i = -1;
-    while (++i < rbc)
-        rrb(b);
-    printf("A\n");
-    print_stack(a);
-    printf("B\n");
-    print_stack(b);
-    a_to_b(a, b, pac);
-    b_to_a(a, b, rbc);
+	if (num <= 0)
+		return (0);
+	if (num == 1)
+		return (1);
+	i = 2;
+	while (i * i <= num)
+	{
+		if (i * i == num)
+			return (i);
+		i++;
+	}
+	return (0);
 }
 
-void a_to_b(t_stack *a, t_stack *b, int call)
+void b_to_a(t_stack *a, t_stack *b)
 {
-    t_node *cur;
-    int temp;
-    int size;
-    int i;
-    int rac;
-    int pbc;
+	t_node *max;
+	int max;
+	int j;
 
-    if (call == 1)
-        return;
-    temp = calc_pivot(a);
-    printf("temp:%d\n", temp);
-    size = a->size;
-    rac = 0;
-    pbc = 0;
-    i = -1;
-    while (++i < size)
-    {
-        cur = a->tail;
-        if (cur->data >= temp)
-        {
-            ra(a);
-            rac++;
-        }
-        else
-        {
-            pb(a, b);
-            pbc++;
-        }
-    }
-    i = -1;
-    while (++i < rac)
-        rra(a);
-    printf("A\n");
-    print_stack(a);
-    printf("B\n");
-    print_stack(b);
-    a_to_b(a, b, rac);
-    b_to_a(a, b, pbc);
+	max = find_min_max(b, 0);
+	j = search_pos(max) + 1;
+	if (j - 1 > b->size / 2)
+		while (b->size - (--j))
+			rra(a);
+	while (b->head != NULL)
+		pa(a, b);
+}
+
+void a_to_b(t_stack *a, t_stack *b)
+{
+	t_node *cur;
+	int chunk;
+	int min;
+	int size;
+	int i;
+	int j;
+
+	cur = a->head;
+	chunk = ft_sqrt(size) / 2;
+	i = 1;
+	while (i <= chunk)
+	{
+		if (chunk * (i - 1) - 1 < cur->data && cur->data >= chunk * i - 1)
+		{
+			if (cur == a->tail)
+				i++;
+			j = search_pos(cur->data) + 1;
+			if (j - 1 > a->size / 2)
+				while (a->size - (--j))
+					rra(a);
+			else
+				while (--j)
+					ra(a);
+			if (b->head->data < a->head)
+			{
+				min = find_min_max(b, 1);
+				j = search_pos(min) + 1;
+				if (j - 1 > b->size / 2)
+					while (a->size - (--j))
+						rra(a);
+				else
+					while (--j)
+						ra(a);
+			}
+			pb(a, b);
+			cur = cur->next;
+		}
+	}
+	b_to_a(a, b);
 }
 
 void sort(t_stack *a)
 {
-    printf("----------------\n");
-    t_stack *b;
-    // (void)pivot;
-    b = init_stack();
-    a_to_b(a, b, a->size);
-    printf("----------------\n");
-    printf("A\n");
-    print_stack(a);
-    printf("B\n");
-    print_stack(b);
-    reset_stack(b);
-    free(b);
+	printf("----------------\n");
+	t_stack *b;
+	// (void)pivot;
+	b = init_stack();
+	a_to_b(a, b);
+	printf("----------------\n");
+	printf("A:");
+	print_stack(a);
+	printf("B:");
+	print_stack(b);
+	reset_stack(b);
+	free(b);
 }
