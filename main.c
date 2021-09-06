@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:16:11 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/26 18:32:51 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/06 16:38:45 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int main()
 	add_last(stack, 4);
 	add_last(stack, 7);
 	add_last(stack, 2);
-	if (ready_made(stack))
-		exit(0);
+	// if (ready_made(stack))
+	// 	exit(0);
 	// check_duplicate(stack);
 	sort(stack);
 	reset_stack(stack);

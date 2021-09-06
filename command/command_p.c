@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 21:23:22 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/26 16:21:45 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/06 17:31:07 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void pa(t_stack *a, t_stack *b)
 {
-    printf("pa ");
+    printf("pa\n");
 
     t_node *temp;
 
@@ -27,7 +27,7 @@ void pa(t_stack *a, t_stack *b)
 
 void pb(t_stack *a, t_stack *b)
 {
-    printf("pb ");
+    printf("pb\n");
     t_node *temp;
 
     temp = a->tail;

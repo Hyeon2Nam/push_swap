@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 15:22:31 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/28 15:55:23 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/06 16:57:47 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void delete_pos(t_stack *stack, int pos);
 t_stack *init_stack(void);
 void reset_stack(t_stack *stack);
 void replace_data(t_stack *stack, int pos, int data);
-int search_pos_data(t_stack *stack, int pos);
+int search_pos(t_stack *stack, int data);
 void print_stack(t_stack *stack);
 
 void check_args(t_stack *stack);

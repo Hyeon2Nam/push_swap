@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:18:37 by hyenam            #+#    #+#             */
-/*   Updated: 2021/08/28 16:52:35 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/06 18:21:52 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int find_min_max(t_stack *stack, int key)
 	cur = stack->head;
 	arr = (int *)malloc(sizeof(int) * stack->size);
 	if (!arr)
-		return;
+		return (0);
 	while (++i <= stack->size)
 	{
 		arr[i] = cur->data;
@@ -37,88 +37,97 @@ int find_min_max(t_stack *stack, int key)
 	return (i);
 }
 
-int ft_sqrt(int num)
+int ft_abs(int num)
 {
+	if (num < 0)
+		return (-num);
+	return (num);
+}
+
+double ft_sqrt(double num)
+{
+	double res;
 	int i;
 
-	if (num <= 0)
-		return (0);
-	if (num == 1)
-		return (1);
-	i = 2;
-	while (i * i <= num)
+	res = 2;
+	i = 0;
+	while (i < 10)
 	{
-		if (i * i == num)
-			return (i);
+		res = (res + (num / res)) / 2;
 		i++;
 	}
-	return (0);
+	return (res);
 }
 
 void b_to_a(t_stack *a, t_stack *b)
 {
-	t_node *max;
-	int max;
-	int j;
-
-	max = find_min_max(b, 0);
-	j = search_pos(max) + 1;
-	if (j - 1 > b->size / 2)
-		while (b->size - (--j))
-			rra(a);
-	while (b->head != NULL)
-		pa(a, b);
+	(void)a;
+	(void)b;
 }
 
 void a_to_b(t_stack *a, t_stack *b)
 {
+	(void)b;
 	t_node *cur;
 	int chunk;
+	int range;
 	int min;
-	int size;
+	int max;
 	int i;
-	int j;
 
-	cur = a->head;
-	chunk = ft_sqrt(size) / 2;
-	i = 1;
-	while (i <= chunk)
+	cur = a->tail;
+	min = find_min_max(a, 1);
+	max = find_min_max(a, 0);
+	chunk = ft_sqrt(ft_abs(min) + ft_abs(max)) / 2 + 1;
+	range = a->size / chunk;
+	i = 0;
+	while (min <= max)
 	{
-		if (chunk * (i - 1) - 1 < cur->data && cur->data >= chunk * i - 1)
+		printf("%d <= %d < %d\n", min, cur->data, min + range);
+		if (min <= cur->data && cur->data < min + range)
 		{
-			if (cur == a->tail)
-				i++;
-			j = search_pos(cur->data) + 1;
-			if (j - 1 > a->size / 2)
-				while (a->size - (--j))
-					rra(a);
-			else
-				while (--j)
-					ra(a);
-			if (b->head->data < a->head)
+			if (cur == a->head)
+				min += range;
+			i = search_pos(a, cur->data) + 1;
+			if (i > a->size / 2)
 			{
-				min = find_min_max(b, 1);
-				j = search_pos(min) + 1;
-				if (j - 1 > b->size / 2)
-					while (a->size - (--j))
-						rra(a);
-				else
-					while (--j)
-						ra(a);
+				i = a->size - i + 1;
+				while (--i)
+					ra(a);
 			}
+			else
+				while (i)
+				{
+					rra(a);
+					i--;
+				}
+			printf("A:");
+			print_stack(a);
+			if (cur->prev->data == cur->data)
+				cur = cur->prev;
+			cur = cur->prev;
 			pb(a, b);
-			cur = cur->next;
+			printf("A:");
+			print_stack(a);
+			printf("B:");
+			print_stack(b);
+		}
+		else
+		{
+			if (cur == a->head)
+				min += range;
+			cur = cur->prev;
 		}
 	}
-	b_to_a(a, b);
 }
 
 void sort(t_stack *a)
 {
 	printf("----------------\n");
 	t_stack *b;
-	// (void)pivot;
 	b = init_stack();
+	printf("A:");
+	print_stack(a);
 	a_to_b(a, b);
 	printf("----------------\n");
 	printf("A:");
