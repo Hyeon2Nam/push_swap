@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:18:37 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/06 18:21:52 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/06 19:40:02 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void a_to_b(t_stack *a, t_stack *b)
 	int min;
 	int max;
 	int i;
+	int temp;
 
 	cur = a->tail;
 	min = find_min_max(a, 1);
@@ -101,12 +102,33 @@ void a_to_b(t_stack *a, t_stack *b)
 					rra(a);
 					i--;
 				}
-			printf("A:");
-			print_stack(a);
 			if (cur->prev->data == cur->data)
 				cur = cur->prev;
 			cur = cur->prev;
+			if (b->tail != NULL && find_min_max(b, 0) < a->tail->data)
+			{
+				temp = find_min_max(b, 1);
+				i = search_pos(b, temp) + 1;
+				if (i > b->size / 2)
+				{
+					i = b->size - i + 1;
+					while (--i)
+						rb(b);
+				}
+				else
+					while (i)
+					{
+						rrb(b);
+						i--;
+					}
+			}
+			printf("A:");
+			print_stack(a);
+			printf("B:");
+			print_stack(b);
+			printf("before prev:%d cur:%d next:%d \n", cur->prev->data, cur->data, cur->next->data);
 			pb(a, b);
+			printf("after:%d cur:%d next:%d \n", cur->prev->data, cur->data, cur->next->data);
 			printf("A:");
 			print_stack(a);
 			printf("B:");

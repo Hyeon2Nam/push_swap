@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:16:11 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/06 16:38:45 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/07 18:01:36 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,27 @@ int main()
 	// 		add_last(stack, ft_atoi(temp[j]));
 	// 	ft_free(temp);
 	// }
-	add_last(stack, 3);
 	add_last(stack, 1);
-	add_last(stack, 5);
-	add_last(stack, 9);
-	add_last(stack, 6);
-	add_last(stack, 8);
-	add_last(stack, 10);
-	add_last(stack, 4);
-	add_last(stack, 7);
 	add_last(stack, 2);
-	// if (ready_made(stack))
-	// 	exit(0);
+	add_last(stack, 3);
+	add_last(stack, 4);
+	add_last(stack, 5);
+	// add_last(stack, 3);
+	// add_last(stack, 1);
+	// add_last(stack, 5);
+	// add_last(stack, 9);
+	// add_last(stack, 6);
+	// add_last(stack, 8);
+	// add_last(stack, 10);
+	// add_last(stack, 4);
+	// add_last(stack, 7);
+	// add_last(stack, 2);
+	if (ready_made(stack))
+		exit(0);
 	// check_duplicate(stack);
+	// if (argc == 2 || argc == 3 || argc == 5)
+	// 	exsort(stack, argc);
+	exsort(stack, 5);
 	sort(stack);
 	reset_stack(stack);
 	free(stack);
