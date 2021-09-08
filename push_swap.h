@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 15:22:31 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/07 17:57:38 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/08 14:09:15 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,16 @@ int ready_made(t_stack *stack);
 void sort(t_stack *a);
 void a_to_b(t_stack *a, t_stack *b);
 void b_to_a(t_stack *a, t_stack *b);
+int find_min_max(t_stack *stack, int key);
+double ft_sqrt(double num);
+int ft_abs(int num);
 
 void exsort(t_stack *stack, int size);
 void three_sort(t_stack *stack);
 void five_sort(t_stack *stack);
+void calc_pos(t_stack *a, t_stack *b);
+
+void move_top(t_stack *stack, int pos);
 
 void sa(t_stack *stack);
 void sb(t_stack *stack);

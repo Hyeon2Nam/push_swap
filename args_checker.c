@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:17:36 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/06 15:07:11 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/08 14:31:39 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@
 
 int ready_made(t_stack *stack)
 {
-	// printf("check ready_made...\n");
-
 	t_node *cur;
 
 	cur = stack->head;
 	while (cur != stack->tail)
 	{
-		if (cur->data > cur->next->data)
+		if (cur->data < cur->next->data)
 			return (0);
 		cur = cur->next;
 	}
@@ -36,8 +34,6 @@ int ready_made(t_stack *stack)
 
 void duplicate(int *arr, int size)
 {
-	// printf("check duplicate...\n");
-
 	int i;
 
 	i = -1;
@@ -69,9 +65,9 @@ void quick_sort(int *arr, int left, int right)
 
 	while (i <= j)
 	{
-		while (arr[i] <= pivot && i <= right)
+		while (arr[i] >= pivot && i <= right)
 			i++;
-		while (arr[j] >= pivot && j > left)
+		while (arr[j] <= pivot && j > left)
 			j--;
 		if (i <= j)
 			swap(arr, i, j);
