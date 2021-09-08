@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 15:20:46 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/08 14:59:51 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/08 15:05:24 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,10 @@ void calc_pos(t_stack *a, t_stack *b)
 	cur = a->tail;
 	max = find_min_max(a, 1);
 	min = find_min_max(a, 0);
-	printf("min:%d max:%d\n", min, max);
-	printf("b->tail:%d\n", b->tail->data);
 	if (b->tail->data > max || b->tail->data < min)
-	{
-		printf("big or min\n");
 		move_top(a, min);
-	}
 	else
 	{
-		printf("else\n");
 		while (cur != a->head)
 		{
 			if (cur->data > b->tail->data && max > cur->data)
@@ -52,30 +46,11 @@ void five_sort(t_stack *a)
 	b = init_stack();
 	pb(a, b);
 	pb(a, b);
-	printf("A:");
-	print_stack(a);
-	printf("B:");
-	print_stack(b);
 	three_sort(a);
-	printf("A:");
-	print_stack(a);
-	printf("B:");
-	print_stack(b);
 	calc_pos(a, b);
-	printf("A:");
-	print_stack(a);
-	printf("B:");
-	print_stack(b);
 	calc_pos(a, b);
-	printf("A:");
-	print_stack(a);
-	printf("B:");
-	print_stack(b);
 	min = find_min_max(a, 0);
 	move_top(a, min);
-	printf("------------\nresult\n");
-	printf("A:");
-	print_stack(a);
 }
 
 void three_sort(t_stack *stack)
@@ -106,5 +81,4 @@ void exsort(t_stack *stack, int size)
 		three_sort(stack);
 	else
 		five_sort(stack);
-	exit(0);
 }
