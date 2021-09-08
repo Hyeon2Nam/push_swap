@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 15:20:46 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/08 15:05:24 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/08 18:07:14 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ void calc_pos(t_stack *a, t_stack *b)
 	int max;
 	int min;
 
-	cur = a->tail;
-	max = find_min_max(a, 1);
-	min = find_min_max(a, 0);
-	if (b->tail->data > max || b->tail->data < min)
-		move_top(a, min);
+	cur = a->head;
+	max = find_min_max(a, 0);
+	min = find_min_max(a, 1);
+	if (b->head->data > max || b->head->data < min)
+		move_top(a, max);
 	else
 	{
-		while (cur != a->head)
+		while (cur != a->tail)
 		{
-			if (cur->data > b->tail->data && max > cur->data)
-				max = cur->data;
-			cur = cur->prev;
+			if (cur->data < b->head->data && min < cur->data)
+				min = cur->data;
+			cur = cur->next;
 		}
-		if (cur->data > b->tail->data && max > cur->data)
-			max = cur->data;
-		move_top(a, max);
+		if (cur->data < b->head->data && min < cur->data)
+			min = cur->data;
+		move_top(a, min);
 	}
 	pa(a, b);
 }
@@ -41,30 +41,46 @@ void calc_pos(t_stack *a, t_stack *b)
 void five_sort(t_stack *a)
 {
 	t_stack *b;
-	int min;
+	int max;
 
 	b = init_stack();
 	pb(a, b);
 	pb(a, b);
 	three_sort(a);
+	printf("A:");
+	print_stack(a);
+	printf("B:");
+	print_stack(b);
 	calc_pos(a, b);
+	printf("A:");
+	print_stack(a);
+	printf("B:");
+	print_stack(b);
 	calc_pos(a, b);
-	min = find_min_max(a, 0);
-	move_top(a, min);
+	printf("A:");
+	print_stack(a);
+	printf("B:");
+	print_stack(b);
+	max = find_min_max(a, 0);
+	move_top(a, max);
+	printf("A:");
+	print_stack(a);
+	reset_stack(b);
+	free(b);
 }
 
 void three_sort(t_stack *stack)
 {
-	if (stack->head->data > stack->head->next->data && stack->tail->data > stack->head->next->data && stack->head->data > stack->tail->data)
-		sa(stack);
-	else if (stack->head->data > stack->head->next->data && stack->tail->data > stack->head->next->data && stack->tail->data > stack->head->data)
+	if (stack->head->data < stack->head->next->data && stack->tail->data < stack->head->next->data && stack->head->data < stack->tail->data)
 		ra(stack);
-	else if (stack->tail->data < stack->head->next->data && stack->head->data < stack->head->next->data && stack->tail->data > stack->head->data)
+	else if (stack->head->data > stack->head->next->data && stack->tail->data > stack->head->next->data && stack->tail->data > stack->head->data)
 		rra(stack);
 	else if (stack->head->data < stack->head->next->data && stack->tail->data < stack->head->next->data && stack->head->data > stack->tail->data)
-	{
 		sa(stack);
-		ra(stack);
+	else if (stack->head->data > stack->head->next->data && stack->tail->data > stack->head->next->data && stack->head->data > stack->tail->data)
+	{
+		rra(stack);
+		sa(stack);
 	}
 	else if (stack->head->data < stack->head->next->data && stack->tail->data > stack->head->next->data && stack->head->data < stack->tail->data)
 	{

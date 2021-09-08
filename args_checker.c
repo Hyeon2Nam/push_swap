@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:17:36 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/08 14:31:39 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/08 17:57:07 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void quick_sort(int *arr, int left, int right)
 
 	while (i <= j)
 	{
-		while (arr[i] >= pivot && i <= right)
+		while (arr[i] <= pivot && i <= right)
 			i++;
-		while (arr[j] <= pivot && j > left)
+		while (arr[j] >= pivot && j > left)
 			j--;
 		if (i <= j)
 			swap(arr, i, j);

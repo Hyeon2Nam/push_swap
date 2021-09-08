@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 11:59:07 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/06 17:33:07 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/08 16:58:01 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,16 @@ void print_stack(t_stack *stack)
 	t_node *cur;
 	int n;
 
-	cur = stack->head;
+	cur = stack->tail;
 	if (cur == NULL)
 		printf("stack is empty\n");
 	else
 	{
 		n = stack->size - 1;
-		while (cur != stack->tail)
+		while (cur != stack->head)
 		{
 			printf("%d ", cur->data);
-			cur = cur->next;
+			cur = cur->prev;
 			n--;
 		}
 		printf("%d\n", cur->data);

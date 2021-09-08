@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 10:55:10 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/06 17:14:58 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/08 17:33:06 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,15 @@ void add_pos(t_stack *stack, int pos, int data)
 	{
 		if (pos == 0)
 			add_first(stack, data);
-		else if (pos == stack->size)
+		else if (pos == stack->size - 1)
 			add_last(stack, data);
 		else
 		{
-			pos--;
-			while (--pos)
+			while (pos)
+			{
 				cur = cur->next;
+				pos--;
+			}
 			node->prev = cur;
 			node->next = cur->next;
 			cur->next = node;
