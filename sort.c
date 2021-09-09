@@ -6,57 +6,91 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:18:37 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/08 17:50:28 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/09 15:08:38 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int find_min_max(t_stack *stack, int key)
+void is_push(t_stack *a, t_stack *b)
 {
 	t_node *cur;
-	int *arr;
-	int i;
+	int max;
+	int min;
 
-	i = -1;
-	cur = stack->head;
-	arr = (int *)malloc(sizeof(int) * stack->size);
-	if (!arr)
-		return (0);
-	while (++i <= stack->size)
-	{
-		arr[i] = cur->data;
-		cur = cur->next;
-	}
-	quick_sort(arr, 0, stack->size - 1);
-	if (key)
-		i = arr[0];
+	if (b->size == 0)
+		pb(a, b);
 	else
-		i = arr[stack->size - 1];
-	free(arr);
-	return (i);
-}
-
-int ft_abs(int num)
-{
-	if (num < 0)
-		return (-num);
-	return (num);
-}
-
-double ft_sqrt(double num)
-{
-	double res;
-	int i;
-
-	res = 2;
-	i = 0;
-	while (i < 10)
 	{
-		res = (res + (num / res)) / 2;
-		i++;
+		cur = b->head;
+		max = find_min_max(b, 0);
+		min = find_min_max(b, 1);
+		if (!(a->head->data > max || a->head->data < min))
+		{
+			while (cur != b->tail)
+			{
+				if (cur->data > b->head->data && max > cur->data)
+					max = cur->data;
+				cur = cur->next;
+			}
+			if (cur->data > b->head->data && max > cur->data)
+				max = cur->data;
+		}
+		move_top(a, max);
+		pb(a, b);
 	}
-	return (res);
+}
+
+void compare_mcount(t_stack *stack, t_pivot *pivot)
+{
+	int f;
+	int l;
+
+	if (pivot->hold_f == NULL && pivot->hold_l != NULL)
+		move_top(stack, pivot->hold_l->data);
+	else if (pivot->hold_l == NULL && pivot->hold_f != NULL)
+		move_top(stack, pivot->hold_f->data);
+	else
+	{
+		f = search_pos(stack, pivot->hold_f->data);
+		l = search_pos(stack, pivot->hold_l->data);
+		if (f > stack->size / 2)
+			f = stack->size - f;
+		if (l > stack->size / 2)
+			l = stack->size - l;
+		printf("f:%d l:%d\n", f, l);
+		if (f <= l)
+			move_top(stack, pivot->hold_f->data);
+		else
+			move_top(stack, pivot->hold_l->data);
+	}
+}
+
+void hold_num(t_stack *stack, t_pivot *pivot, int min, int max)
+{
+	t_node *first;
+	t_node *last;
+
+	first = stack->head;
+	last = stack->tail;
+	pivot->hold_f = NULL;
+	pivot->hold_l = NULL;
+	while (pivot->hold_f == NULL && first != stack->tail)
+	{
+		if (min <= first->data && first->data < max)
+			pivot->hold_f = first;
+		first = first->next;
+	}
+	if (first == stack->tail && min <= first->data && first->data < max)
+		pivot->hold_f = first;
+	while (pivot->hold_l == NULL && last != stack->head)
+	{
+		if (min <= first->data && first->data < max)
+			pivot->hold_l = last;
+		last = last->prev;
+	}
+	if (stack->size == 1)
+		pivot->hold_f = stack->head;
 }
 
 void b_to_a(t_stack *a, t_stack *b)
@@ -67,79 +101,31 @@ void b_to_a(t_stack *a, t_stack *b)
 
 void a_to_b(t_stack *a, t_stack *b)
 {
-	(void)b;
-	t_node *cur;
+	t_pivot pivot;
 	int chunk;
 	int range;
 	int min;
 	int max;
-	int i;
-	int temp;
 
-	cur = a->tail;
 	min = find_min_max(a, 1);
 	max = find_min_max(a, 0);
 	chunk = ft_sqrt(ft_abs(min) + ft_abs(max)) / 2 + 1;
 	range = a->size / chunk;
-	i = 0;
-	while (min <= max)
+	while (a->size != 0)
 	{
-		printf("%d <= %d < %d\n", min, cur->data, min + range);
-		if (min <= cur->data && cur->data < min + range)
+		hold_num(a, &pivot, min, min + range);
+		if (pivot.hold_f == NULL)
 		{
-			if (cur == a->head)
-				min += range;
-			i = search_pos(a, cur->data) + 1;
-			if (i > a->size / 2)
-			{
-				i = a->size - i + 1;
-				while (--i)
-					ra(a);
-			}
-			else
-				while (i)
-				{
-					rra(a);
-					i--;
-				}
-			if (cur->prev->data == cur->data)
-				cur = cur->prev;
-			cur = cur->prev;
-			if (b->tail != NULL && find_min_max(b, 0) < a->tail->data)
-			{
-				temp = find_min_max(b, 1);
-				i = search_pos(b, temp) + 1;
-				if (i > b->size / 2)
-				{
-					i = b->size - i + 1;
-					while (--i)
-						rb(b);
-				}
-				else
-					while (i)
-					{
-						rrb(b);
-						i--;
-					}
-			}
-			printf("A:");
-			print_stack(a);
-			printf("B:");
-			print_stack(b);
-			printf("before prev:%d cur:%d next:%d \n", cur->prev->data, cur->data, cur->next->data);
-			pb(a, b);
-			printf("after:%d cur:%d next:%d \n", cur->prev->data, cur->data, cur->next->data);
-			printf("A:");
-			print_stack(a);
-			printf("B:");
-			print_stack(b);
+			min += range;
+			continue;
 		}
-		else
-		{
-			if (cur == a->head)
-				min += range;
-			cur = cur->prev;
-		}
+		printf("first:%d last:%d\n", pivot.hold_f->data, pivot.hold_l->data);
+		compare_mcount(a, &pivot);
+		printf("A:");
+		print_stack(a);
+		printf("B:");
+		print_stack(b);
+		is_push(a, b);
 	}
 }
 
