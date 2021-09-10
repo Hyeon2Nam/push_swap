@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 15:22:31 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/10 15:21:05 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/10 15:32:13 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_pivot
 	t_node *hold_l;
 } t_pivot;
 
-void error_handler(char *str);
+void error_handler(void);
 void ft_free(char **arr);
 
 void add_first(t_stack *stack, int data);

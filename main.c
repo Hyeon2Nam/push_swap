@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:16:11 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/10 15:26:49 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/10 15:35:22 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int main(int argc, char *args[])
 {
 	char **temp;
 	t_stack *stack;
-	int n;
 
 	if (argc == 1)
 		exit(0);
@@ -39,11 +38,10 @@ int main(int argc, char *args[])
 	print_stack(stack);
 	reset_stack(stack);
 	free(stack);
-	putchar(scanf("%d", &n));
 }
 
-void error_handler(char *str)
+void error_handler(void)
 {
-	printf("Error\n%s\n",str);
+	printf("Error\n");
 	exit(1);
 }
