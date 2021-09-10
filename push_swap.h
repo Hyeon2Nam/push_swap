@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 15:22:31 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/09 14:27:12 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/10 15:09:10 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,23 @@
 
 typedef struct s_node
 {
-    struct s_node *prev;
-    struct s_node *next;
-    int data;
+	struct s_node *prev;
+	struct s_node *next;
+	int data;
 } t_node;
 
 typedef struct s_stack
 {
-    t_node *head;
-    t_node *tail;
-    int size;
+	t_node *head;
+	t_node *tail;
+	int size;
 } t_stack;
 
 typedef struct s_pivot
 {
-    t_node *hold_f;
-    t_node *hold_l;
-}   t_pivot;
-
-typedef struct s_chunk
-{
-    t_pivot *pivot;
-    int chunk;
-    int range;
-    int min;
-    int max;
-}t_chunk;
+	t_node *hold_f;
+	t_node *hold_l;
+} t_pivot;
 
 void error_handler(void);
 void ft_free(char **arr);
@@ -72,6 +63,9 @@ int ready_made(t_stack *stack);
 void sort(t_stack *a);
 void a_to_b(t_stack *a, t_stack *b);
 void b_to_a(t_stack *a, t_stack *b);
+void hold_num(t_stack *stack, t_pivot *pivot, int min, int max);
+void compare_mcount(t_stack *stack, t_pivot *pivot);
+void is_push(t_stack *a, t_stack *b);
 
 void exsort(t_stack *stack, int size);
 void three_sort(t_stack *stack);

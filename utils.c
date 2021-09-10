@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 10:40:00 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/09 14:48:45 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/10 14:57:56 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int find_min_max(t_stack *stack, int key)
 	arr = (int *)malloc(sizeof(int) * stack->size);
 	if (!arr)
 		return (0);
-	while (++i <= stack->size)
+	while (++i < stack->size)
 	{
 		arr[i] = cur->data;
 		cur = cur->next;

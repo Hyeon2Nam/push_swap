@@ -6,17 +6,11 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:17:36 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/09 15:44:21 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/10 15:08:12 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void print_arr(int *arr, int size)
-{
-    for (int i = 0; i < size; i++)
-        printf("arr[%d]:%d\n", i, arr[i]);
-}
 
 int ready_made(t_stack *stack)
 {
@@ -95,7 +89,6 @@ void check_args(t_stack *stack)
 		cur = cur->next;
 	}
 	quick_sort(arr, 0, stack->size - 1);
-	print_arr(arr, stack->size);
 	duplicate(arr, stack->size);
 	free(arr);
 }
