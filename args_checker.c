@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:17:36 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/10 15:08:12 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/10 15:27:29 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void duplicate(int *arr, int size)
 	int i;
 
 	i = -1;
-	while (++i < size)
-		if (arr[i + 1] && arr[i] == arr[i + 1])
-			error_handler();
+	while (++i < size - 1)
+		if (arr[i] == arr[i + 1])
+			error_handler("Is duplicate");
 }
 
 void swap(int *arr, int a, int b)

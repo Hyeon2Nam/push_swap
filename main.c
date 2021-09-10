@@ -6,24 +6,17 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:16:11 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/10 15:16:43 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/10 15:26:49 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void print_arr(char *temp[])
-{
-	for (int i = 0; temp[i]; i++)
-		for (int j = 0; temp[i][j]; j++)
-			printf("temp[%d][%d]:%c\n", i, j, temp[i][j]);
-}
-
 int main(int argc, char *args[])
 {
 	char **temp;
 	t_stack *stack;
-	// int n;
+	int n;
 
 	if (argc == 1)
 		exit(0);
@@ -36,21 +29,21 @@ int main(int argc, char *args[])
 		ft_free(temp);
 	}
 
+	check_args(stack);
 	if (ready_made(stack))
 		exit(0);
-	check_args(stack);
 	if (stack->size == 2 || stack->size == 3 || stack->size == 5)
 		exsort(stack, stack->size);
 	sort(stack);
-	// putchar(scanf("%d", &n));
 	printf("-----------\nresult\n");
 	print_stack(stack);
 	reset_stack(stack);
 	free(stack);
+	putchar(scanf("%d", &n));
 }
 
-void error_handler(void)
+void error_handler(char *str)
 {
-	printf("Error\n");
+	printf("Error\n%s\n",str);
 	exit(1);
 }
