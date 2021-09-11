@@ -27,9 +27,9 @@ if [[ $number -le 3 ]]; then
 elif [[ $number -le 5 ]]; then
 	limit=12
 elif [[ $number -le 100 ]]; then
-	limit=700
+	limit=900
 elif [[ $number -le 500 ]]; then
-	limit=5300
+	limit=8500
 fi
 ​
 ​
@@ -39,7 +39,7 @@ while [[ $times -gt 0 ]]; do
 	ARG=$(ruby -e "puts (1..$number).to_a.shuffle.join(' ')")
 ​
 	./$push_swap $ARG > $result_temp_file
-	checker_result=$(cat $result_temp_file | ./$checker $ARG)
+	# checker_result=$(cat $result_temp_file | ./$checker $ARG)
 	instruction_count=$(printf '%d' $(cat $result_temp_file | wc -l))
 ​
 	echo "[$checker_result]	instruction count: $instruction_count"
