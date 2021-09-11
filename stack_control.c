@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 10:55:10 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/08 17:33:06 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/10 16:22:48 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ void add_pos(t_stack *stack, int pos, int data)
 			stack->size++;
 		}
 	}
-	else
-		printf("add error\n");
 }
 
 void delete_first(t_stack *stack)
@@ -98,8 +96,6 @@ void delete_first(t_stack *stack)
 	t_node *head;
 
 	head = stack->head;
-	if (head == NULL)
-		printf("stack is empty\n");
 	if (stack->size == 1)
 		reset_stack(stack);
 	else
@@ -119,8 +115,6 @@ void delete_last(t_stack *stack)
 	t_node *tail;
 
 	tail = stack->tail;
-	if (tail == NULL)
-		printf("stack is empty\n");
 	if (stack->size == 1)
 		reset_stack(stack);
 	else
@@ -142,9 +136,7 @@ void delete_pos(t_stack *stack, int pos)
 	cur = stack->head;
 	if (pos <= stack->size)
 	{
-		if (stack->head == NULL)
-			printf("stack is empty\n");
-		else if (pos == 0)
+		if (pos == 0)
 			delete_first(stack);
 		else if (pos == stack->size)
 			delete_last(stack);
@@ -160,6 +152,4 @@ void delete_pos(t_stack *stack, int pos)
 		free(node);
 		stack->size--;
 	}
-	else
-		printf("delete error\n");
 }

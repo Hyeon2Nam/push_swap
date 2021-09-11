@@ -6,31 +6,31 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 23:26:11 by riiringim         #+#    #+#             */
-/*   Updated: 2021/08/20 15:45:56 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/11 16:48:49 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void error_handler(void)
+static void	error_handler(void)
 {
-	ft_putstr_fd("Error\n", 1);
+	ft_putstr_fd("Error\n");
 	exit(1);
 }
 
-static int ft_isspace(char c)
+static int	ft_isspace(char c)
 {
-	if (c == '\t' || c == '\n' || c == '\v' ||
-		c == '\f' || c == '\r' || c == ' ')
+	if (c == '\t' || c == '\n' || c == '\v'
+		|| c == '\f' || c == '\r' || c == ' ')
 		return (1);
 	return (0);
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	long long res;
-	int sign;
-	int i;
+	long long	res;
+	int			sign;
+	int			i;
 
 	i = 0;
 	sign = 1;

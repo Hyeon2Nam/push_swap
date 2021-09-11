@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riiringim <riiringim@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 16:21:45 by riiringim         #+#    #+#             */
-/*   Updated: 2020/12/29 20:34:14 by riiringim        ###   ########.fr       */
+/*   Updated: 2021/09/11 16:19:05 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s)
 {
 	if (!s)
 		return ;
 	while (*s)
-		ft_putchar_fd(*s++, fd);
+		ft_putchar_fd(*s++);
 }

@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:18:37 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/10 15:01:03 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/10 17:02:25 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void is_push(t_stack *a, t_stack *b)
 		cur = b->head;
 		max = find_min_max(b, 0);
 		min = find_min_max(b, 1);
-		if (a->head->data > max || a->head->data < min)
+		if (a->head->data < min)
 			move_top(b, min);
 		else
 		{
@@ -151,6 +151,5 @@ void sort(t_stack *a)
 	t_stack *b;
 	b = init_stack();
 	a_to_b(a, b);
-	reset_stack(b);
 	free(b);
 }

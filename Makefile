@@ -6,7 +6,7 @@
 #    By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 09:36:31 by hyenam            #+#    #+#              #
-#    Updated: 2021/09/10 15:03:06 by hyenam           ###   ########.fr        #
+#    Updated: 2021/09/11 16:16:42 by hyenam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all : $(NAME)
 .PHONY : all clean fclean re
 
 $(NAME): $(OBJS)
-		make -C $(LIB_DIR) bonus
+		make -C $(LIB_DIR)
 		gcc $(CFLAGS) -o $(NAME) $(OBJS) $(INCLUDE) $(LIBS)
 
 clean:

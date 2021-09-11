@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 15:20:46 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/09 15:53:20 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/10 16:08:26 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,14 @@ void calc_pos(t_stack *a, t_stack *b)
 void five_sort(t_stack *a)
 {
 	t_stack *b;
-	int min;
 
 	b = init_stack();
 	pb(a, b);
 	pb(a, b);
 	three_sort(a);
-	printf("A:");
-	print_stack(a);
-	printf("B:");
-	print_stack(b);
 	calc_pos(a, b);
-	printf("A:");
-	print_stack(a);
-	printf("B:");
-	print_stack(b);
 	calc_pos(a, b);
-	printf("A:");
-	print_stack(a);
-	printf("B:");
-	print_stack(b);
-	min = find_min_max(a, 1);
-	move_top(a, min);
+	move_top(a, find_min_max(a, 1));
 	reset_stack(b);
 	free(b);
 }
@@ -91,7 +77,7 @@ void exsort(t_stack *stack, int size)
 {
 	if (size == 2)
 		ra(stack);
-	if (size == 3)
+	else if (size == 3)
 		three_sort(stack);
 	else
 		five_sort(stack);
