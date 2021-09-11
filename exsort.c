@@ -6,17 +6,17 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 15:20:46 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/10 16:08:26 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/11 18:01:45 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void calc_pos(t_stack *a, t_stack *b)
+void	calc_pos_a(t_stack *a, t_stack *b)
 {
-	t_node *cur;
-	int max;
-	int min;
+	t_node	*cur;
+	int		max;
+	int		min;
 
 	cur = a->head;
 	max = find_min_max(a, 0);
@@ -38,42 +38,58 @@ void calc_pos(t_stack *a, t_stack *b)
 	pa(a, b);
 }
 
-void five_sort(t_stack *a)
+void	five_sort(t_stack *a)
 {
-	t_stack *b;
+	t_stack	*b;
 
 	b = init_stack();
 	pb(a, b);
 	pb(a, b);
 	three_sort(a);
-	calc_pos(a, b);
-	calc_pos(a, b);
+	calc_pos_a(a, b);
+	calc_pos_a(a, b);
 	move_top(a, find_min_max(a, 1));
 	reset_stack(b);
 	free(b);
 }
 
-void three_sort(t_stack *stack)
+void	three_sort(t_stack *stack)
 {
-	if (stack->head->data > stack->head->next->data && stack->tail->data > stack->head->next->data && stack->head->data > stack->tail->data)
+	if (stack->head->data > stack->head->next->data
+		&& stack->tail->data > stack->head->next->data
+		&& stack->head->data > stack->tail->data)
 		ra(stack);
-	else if (stack->head->data < stack->head->next->data && stack->tail->data < stack->head->next->data && stack->tail->data < stack->head->data)
+	else if (stack->head->data < stack->head->next->data
+		&& stack->tail->data < stack->head->next->data
+		&& stack->tail->data < stack->head->data)
 		rra(stack);
-	else if (stack->head->data > stack->head->next->data && stack->tail->data > stack->head->next->data && stack->head->data < stack->tail->data)
+	else if (stack->head->data > stack->head->next->data
+		&& stack->tail->data > stack->head->next->data
+		&& stack->head->data < stack->tail->data)
 		sa(stack);
-	else if (stack->head->data < stack->head->next->data && stack->tail->data < stack->head->next->data && stack->head->data < stack->tail->data)
+	else
+		extra_three_sort(stack);
+}
+
+void	extra_three_sort(t_stack *stack)
+{
+	if (stack->head->data < stack->head->next->data
+		&& stack->tail->data < stack->head->next->data
+		&& stack->head->data < stack->tail->data)
 	{
 		sa(stack);
 		ra(stack);
 	}
-	else if (stack->head->data > stack->head->next->data && stack->tail->data < stack->head->next->data && stack->head->data > stack->tail->data)
+	else if (stack->head->data > stack->head->next->data
+		&& stack->tail->data < stack->head->next->data
+		&& stack->head->data > stack->tail->data)
 	{
 		sa(stack);
 		rra(stack);
 	}
 }
 
-void exsort(t_stack *stack, int size)
+void	exsort(t_stack *stack, int size)
 {
 	if (size == 2)
 		ra(stack);

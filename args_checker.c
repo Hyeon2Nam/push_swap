@@ -6,15 +6,15 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:17:36 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/10 15:32:23 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/11 17:53:04 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ready_made(t_stack *stack)
+int	ready_made(t_stack *stack)
 {
-	t_node *cur;
+	t_node	*cur;
 
 	cur = stack->head;
 	while (cur != stack->tail)
@@ -26,9 +26,9 @@ int ready_made(t_stack *stack)
 	return (1);
 }
 
-void duplicate(int *arr, int size)
+void	duplicate(int *arr, int size)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < size - 1)
@@ -36,27 +36,26 @@ void duplicate(int *arr, int size)
 			error_handler();
 }
 
-void swap(int *arr, int a, int b)
+void	swap(int *arr, int a, int b)
 {
-	int temp;
+	int	temp;
 
 	temp = arr[a];
 	arr[a] = arr[b];
 	arr[b] = temp;
 }
 
-void quick_sort(int *arr, int left, int right)
+void	quick_sort(int *arr, int left, int right)
 {
-	int pivot;
-	int i;
-	int j;
+	int	pivot;
+	int	i;
+	int	j;
 
 	if (left >= right)
-		return;
+		return ;
 	pivot = arr[left];
 	i = left + 1;
 	j = right;
-
 	while (i <= j)
 	{
 		while (arr[i] <= pivot && i <= right)
@@ -72,17 +71,17 @@ void quick_sort(int *arr, int left, int right)
 	quick_sort(arr, j + 1, right);
 }
 
-void check_args(t_stack *stack)
+void	check_args(t_stack *stack)
 {
-	t_node *cur;
-	int *arr;
-	int i;
+	t_node	*cur;
+	int		*arr;
+	int		i;
 
 	i = -1;
 	cur = stack->head;
 	arr = (int *)malloc(sizeof(int) * stack->size);
 	if (!arr)
-		return;
+		return ;
 	while (++i <= stack->size)
 	{
 		arr[i] = cur->data;

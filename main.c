@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:16:11 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/11 17:51:13 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/11 19:03:10 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ void	input_data(t_stack *stack, int argc, char *args[])
 int	main(int argc, char *args[])
 {
 	t_stack	*stack;
-	// int n;
+	int n;
 
 	if (argc == 1)
 		exit(0);
 	stack = init_stack();
 	input_data(stack, argc, args);
 	sort_case(stack);
-	// print_stack(stack);
+	print_stack(stack);
 	reset_stack(stack);
 	free(stack);
-	// putchar(scanf("%d",&n));
+	putchar(scanf("%d",&n));
 }

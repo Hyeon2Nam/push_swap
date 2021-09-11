@@ -6,69 +6,24 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:18:37 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/10 17:02:25 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/11 18:53:42 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void is_push(t_stack *a, t_stack *b)
+void	is_push(t_stack *a, t_stack *b)
 {
-	t_node *cur;
-	int max;
-	int min;
-
 	if (b->size == 0)
 		pb(a, b);
 	else
-	{
-		cur = b->head;
-		max = find_min_max(b, 0);
-		min = find_min_max(b, 1);
-		if (a->head->data < min)
-			move_top(b, min);
-		else
-		{
-			while (cur != b->tail)
-			{
-				if (cur->data > a->head->data && max > cur->data)
-					max = cur->data;
-				cur = cur->next;
-			}
-			if (cur->data > a->head->data && max > cur->data)
-				max = cur->data;
-			move_top(b, max);
-		}
-		pb(a, b);
-	}
+		calc_pos_b(a, b);
 }
 
-void compare_mcount(t_stack *stack, t_pivot *pivot)
+void	hold_num(t_stack *stack, t_pivot *pivot, int min, int max)
 {
-	int f;
-	int l;
-
-	if (pivot->hold_l == NULL && pivot->hold_f != NULL)
-		move_top(stack, pivot->hold_f->data);
-	else
-	{
-		f = search_pos(stack, pivot->hold_f->data);
-		l = search_pos(stack, pivot->hold_l->data);
-		if (f > stack->size / 2)
-			f = stack->size - f;
-		if (l > stack->size / 2)
-			l = stack->size - l;
-		if (f <= l)
-			move_top(stack, pivot->hold_f->data);
-		else
-			move_top(stack, pivot->hold_l->data);
-	}
-}
-
-void hold_num(t_stack *stack, t_pivot *pivot, int min, int max)
-{
-	t_node *first;
-	t_node *last;
+	t_node	*first;
+	t_node	*last;
 
 	first = stack->head;
 	last = stack->tail;
@@ -92,9 +47,9 @@ void hold_num(t_stack *stack, t_pivot *pivot, int min, int max)
 		pivot->hold_f = stack->head;
 }
 
-void b_to_a(t_stack *a, t_stack *b)
+void	b_to_a(t_stack *a, t_stack *b)
 {
-	int i;
+	int	i;
 
 	while (b->size != 0)
 	{
@@ -120,13 +75,13 @@ void b_to_a(t_stack *a, t_stack *b)
 	}
 }
 
-void a_to_b(t_stack *a, t_stack *b)
+void	a_to_b(t_stack *a, t_stack *b)
 {
-	t_pivot pivot;
-	int chunk;
-	int range;
-	int min;
-	int max;
+	t_pivot	pivot;
+	int		chunk;
+	int		range;
+	int		min;
+	int		max;
 
 	min = find_min_max(a, 1);
 	max = find_min_max(a, 0);
@@ -138,7 +93,7 @@ void a_to_b(t_stack *a, t_stack *b)
 		if (pivot.hold_f == NULL)
 		{
 			min += range;
-			continue;
+			continue ;
 		}
 		compare_mcount(a, &pivot);
 		is_push(a, b);
@@ -146,9 +101,10 @@ void a_to_b(t_stack *a, t_stack *b)
 	b_to_a(a, b);
 }
 
-void sort(t_stack *a)
+void	sort(t_stack *a)
 {
-	t_stack *b;
+	t_stack	*b;
+
 	b = init_stack();
 	a_to_b(a, b);
 	free(b);

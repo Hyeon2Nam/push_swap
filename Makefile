@@ -6,7 +6,7 @@
 #    By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 09:36:31 by hyenam            #+#    #+#              #
-#    Updated: 2021/09/11 16:16:42 by hyenam           ###   ########.fr        #
+#    Updated: 2021/09/11 18:03:12 by hyenam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ RM := rm -rf
 CFLAGS := -Wall -Werror -Wextra
 INCLUDE = -I. -I./libft
 LIBS = -Llibft -lft
-SRCS = 	./main.c ./utils.c ./stack_control.c ./stack_util.c \
+SRCS = 	./main.c ./common_utils.c ./stack_control.c \
+		./stack_util.c sort_utils.c \
 		./args_checker.c ./sort.c exsort.c \
 		./command/command_p.c ./command/command_r.c \
 		./command/command_s.c ./command/command_rr.c

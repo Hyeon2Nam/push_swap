@@ -6,19 +6,18 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 10:55:10 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/10 16:22:48 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/11 18:44:32 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void add_first(t_stack *stack, int data)
+void	add_first(t_stack *stack, int data)
 {
-	t_node *node;
+	t_node	*node;
 
 	node = (t_node *)malloc(sizeof(t_node));
 	node->data = data;
-
 	if (stack->head == NULL)
 	{
 		stack->head = node;
@@ -37,10 +36,11 @@ void add_first(t_stack *stack, int data)
 	stack->size++;
 }
 
-void add_last(t_stack *stack, int data)
+void	add_last(t_stack *stack, int data)
 {
-	t_node *node = (t_node *)malloc(sizeof(t_node));
+	t_node	*node;
 
+	node = (t_node *)malloc(sizeof(t_node));
 	node->data = data;
 	if (stack->tail == NULL)
 	{
@@ -60,10 +60,10 @@ void add_last(t_stack *stack, int data)
 	stack->size++;
 }
 
-void add_pos(t_stack *stack, int pos, int data)
+void	add_pos(t_stack *stack, int pos, int data)
 {
-	t_node *node;
-	t_node *cur;
+	t_node	*node;
+	t_node	*cur;
 
 	node = (t_node *)malloc(sizeof(t_node));
 	node->data = data;
@@ -76,11 +76,9 @@ void add_pos(t_stack *stack, int pos, int data)
 			add_last(stack, data);
 		else
 		{
-			while (pos)
-			{
+			pos++;
+			while (--pos)
 				cur = cur->next;
-				pos--;
-			}
 			node->prev = cur;
 			node->next = cur->next;
 			cur->next = node;
@@ -90,10 +88,10 @@ void add_pos(t_stack *stack, int pos, int data)
 	}
 }
 
-void delete_first(t_stack *stack)
+void	delete_first(t_stack *stack)
 {
-	t_node *node;
-	t_node *head;
+	t_node	*node;
+	t_node	*head;
 
 	head = stack->head;
 	if (stack->size == 1)
@@ -109,10 +107,10 @@ void delete_first(t_stack *stack)
 	}
 }
 
-void delete_last(t_stack *stack)
+void	delete_last(t_stack *stack)
 {
-	t_node *node;
-	t_node *tail;
+	t_node	*node;
+	t_node	*tail;
 
 	tail = stack->tail;
 	if (stack->size == 1)
@@ -124,32 +122,6 @@ void delete_last(t_stack *stack)
 		stack->head->prev = node;
 		stack->tail = node;
 		free(tail);
-		stack->size--;
-	}
-}
-
-void delete_pos(t_stack *stack, int pos)
-{
-	t_node *node;
-	t_node *cur;
-
-	cur = stack->head;
-	if (pos <= stack->size)
-	{
-		if (pos == 0)
-			delete_first(stack);
-		else if (pos == stack->size)
-			delete_last(stack);
-		else
-		{
-			pos--;
-			while (--pos)
-				cur = cur->next;
-		}
-		node = cur;
-		cur->prev->next = node->next;
-		cur->next->prev = node->prev;
-		free(node);
 		stack->size--;
 	}
 }
