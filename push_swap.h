@@ -6,14 +6,13 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 15:22:31 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/14 14:18:46 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/14 15:35:35 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.h"
