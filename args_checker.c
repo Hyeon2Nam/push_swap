@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:17:36 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/11 17:53:04 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/14 13:44:35 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	check_args(t_stack *stack)
 
 	i = -1;
 	cur = stack->head;
-	arr = (int *)malloc(sizeof(int) * stack->size);
+	arr = (int *)malloc(sizeof(int) * (stack->size + 1));
 	if (!arr)
 		return ;
 	while (++i <= stack->size)

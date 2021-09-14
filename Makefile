@@ -6,14 +6,14 @@
 #    By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 09:36:31 by hyenam            #+#    #+#              #
-#    Updated: 2021/09/11 18:03:12 by hyenam           ###   ########.fr        #
+#    Updated: 2021/09/14 13:41:31 by hyenam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC := gcc
 RM := rm -rf
-CFLAGS := -Wall -Werror -Wextra
+CFLAGS := -Wall -Werror -Wextra  -g3 -fsanitize=address
 INCLUDE = -I. -I./libft
 LIBS = -Llibft -lft
 SRCS = 	./main.c ./common_utils.c ./stack_control.c \

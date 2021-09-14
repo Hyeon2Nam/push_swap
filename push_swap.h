@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 15:22:31 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/11 19:01:39 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/14 14:18:46 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	input_data(t_stack *stack, int argc, char *args[]);
 
 t_stack	*init_stack(void);
 void	reset_stack(t_stack *stack);
-void	replace_data(t_stack *stack, int pos, int data);
 int		search_pos(t_stack *stack, int data);
 void	print_stack(t_stack *stack);
 
@@ -73,7 +72,8 @@ void	hold_num(t_stack *stack, t_pivot *pivot, int min, int max);
 void	is_push(t_stack *a, t_stack *b);
 
 int		find_min_max(t_stack *stack, int key);
-void	move_top(t_stack *stack, int pos);
+void	move_top_a(t_stack *stack, int pos);
+void	move_top_b(t_stack *stack, int pos);
 void	calc_pos_b(t_stack *a, t_stack *b);
 void	compare_mcount(t_stack *stack, t_pivot *pivot);
 

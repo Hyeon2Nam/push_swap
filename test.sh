@@ -39,7 +39,7 @@ while [[ $times -gt 0 ]]; do
 	ARG=$(ruby -e "puts (1..$number).to_a.shuffle.join(' ')")
 ​
 	./$push_swap $ARG > $result_temp_file
-	# checker_result=$(cat $result_temp_file | ./$checker $ARG)
+	checker_result=$(cat $result_temp_file | ./$checker $ARG)
 	instruction_count=$(printf '%d' $(cat $result_temp_file | wc -l))
 ​
 	echo "[$checker_result]	instruction count: $instruction_count"

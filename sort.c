@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:18:37 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/11 18:53:42 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/14 13:50:21 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ void	sort(t_stack *a)
 
 	b = init_stack();
 	a_to_b(a, b);
+	reset_stack(b);
 	free(b);
 }

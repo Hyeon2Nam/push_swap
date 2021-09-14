@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 17:59:16 by riiringim         #+#    #+#             */
-/*   Updated: 2021/09/11 17:15:12 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/14 13:43:31 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	**ft_split(char const *s, char c)
 {
 	char	**str;
 
-	str = (char **)malloc(sizeof(char *) * ft_cutnum(s, c) + 1);
+	str = (char **)malloc(sizeof(char *) * (ft_cutnum(s, c) + 1));
 	if (!str)
 	{
 		ft_free(str);

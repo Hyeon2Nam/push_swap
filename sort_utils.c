@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 17:57:29 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/11 18:54:24 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/14 14:18:01 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	compare_mcount(t_stack *stack, t_pivot *pivot)
 	int	l;
 
 	if (pivot->hold_l == NULL && pivot->hold_f != NULL)
-		move_top(stack, pivot->hold_f->data);
+		move_top_a(stack, pivot->hold_f->data);
 	else
 	{
 		f = search_pos(stack, pivot->hold_f->data);
@@ -28,9 +28,9 @@ void	compare_mcount(t_stack *stack, t_pivot *pivot)
 		if (l > stack->size / 2)
 			l = stack->size - l;
 		if (f <= l)
-			move_top(stack, pivot->hold_f->data);
+			move_top_a(stack, pivot->hold_f->data);
 		else
-			move_top(stack, pivot->hold_l->data);
+			move_top_a(stack, pivot->hold_l->data);
 	}
 }
 
@@ -44,7 +44,7 @@ void	calc_pos_b(t_stack *a, t_stack *b)
 	max = find_min_max(b, 0);
 	min = find_min_max(b, 1);
 	if (a->head->data < min)
-		move_top(b, min);
+		move_top_b(b, min);
 	else
 	{
 		while (cur != b->tail)
@@ -55,12 +55,36 @@ void	calc_pos_b(t_stack *a, t_stack *b)
 		}
 		if (cur->data > a->head->data && max > cur->data)
 			max = cur->data;
-		move_top(b, max);
+		move_top_b(b, max);
 	}
 	pb(a, b);
 }
 
-void	move_top(t_stack *stack, int pos)
+void	move_top_b(t_stack *stack, int pos)
+{
+	int	i;
+
+	i = search_pos(stack, pos);
+	if (i > stack->size / 2)
+	{
+		i = stack->size - i;
+		while (i)
+		{
+			rrb(stack);
+			i--;
+		}
+	}
+	else
+	{
+		while (i)
+		{
+			rb(stack);
+			i--;
+		}
+	}
+}
+
+void	move_top_a(t_stack *stack, int pos)
 {
 	int	i;
 
@@ -92,7 +116,7 @@ int	find_min_max(t_stack *stack, int key)
 
 	i = -1;
 	cur = stack->head;
-	arr = (int *)malloc(sizeof(int) * stack->size);
+	arr = (int *)malloc(sizeof(int) * (stack->size + 1));
 	if (!arr)
 		return (0);
 	while (++i < stack->size)

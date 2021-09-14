@@ -6,7 +6,7 @@
 /*   By: hyenam <hyeon@student.42seoul.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 15:20:46 by hyenam            #+#    #+#             */
-/*   Updated: 2021/09/11 18:01:45 by hyenam           ###   ########.fr       */
+/*   Updated: 2021/09/14 14:18:16 by hyenam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	calc_pos_a(t_stack *a, t_stack *b)
 	max = find_min_max(a, 0);
 	min = find_min_max(a, 1);
 	if (b->head->data > max || b->head->data < min)
-		move_top(a, min);
+		move_top_a(a, min);
 	else
 	{
 		while (cur != a->tail)
@@ -33,7 +33,7 @@ void	calc_pos_a(t_stack *a, t_stack *b)
 		}
 		if (cur->data > b->head->data && max > cur->data)
 			max = cur->data;
-		move_top(a, max);
+		move_top_a(a, max);
 	}
 	pa(a, b);
 }
@@ -48,7 +48,7 @@ void	five_sort(t_stack *a)
 	three_sort(a);
 	calc_pos_a(a, b);
 	calc_pos_a(a, b);
-	move_top(a, find_min_max(a, 1));
+	move_top_a(a, find_min_max(a, 1));
 	reset_stack(b);
 	free(b);
 }
